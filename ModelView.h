@@ -16,9 +16,7 @@
 class ModelView
 {
 public:
-	// NOTE: You will likely want to modify the ModelView constructor to
-	//       take additional parameters.
-	ModelView(ShaderIF* sIF);
+	ModelView(ShaderIF* sIF, float params[], int length);
 	virtual ~ModelView();
 
 	// xyzLimits: {mcXmin, mcXmax, mcYmin, mcYmax, mcZmin, mcZmax}
@@ -35,7 +33,7 @@ private:
 	// TODO: VAO(s), VBO(s), and other relevant INSTANCE variables
 
 	ShaderIF* shaderIF;
-	
+
 	// TODO: add uniform and attribute variable location CLASS variables
 
 	// Routines for computing parameters necessary to map from arbitrary

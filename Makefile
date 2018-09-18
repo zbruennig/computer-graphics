@@ -26,3 +26,5 @@ GLFWController.o: ../mvcutil/GLFWController.h ../mvcutil/GLFWController.c++
 
 clean:
 	rm main *.o
+
+again: clean main

@@ -9,11 +9,15 @@
 double ModelView::mcRegionOfInterest[6] = { -1.0, 1.0, -1.0, 1.0, -1.0, 1.0 };
 bool ModelView::aspectRatioPreservationEnabled = true;
 
-// NOTE: You will likely want to modify the ModelView constructor to
-//       take additional parameters.
-ModelView::ModelView(ShaderIF* sIF) : shaderIF(sIF)
+ModelView::ModelView(ShaderIF* sIF, float params[], int length) : shaderIF(sIF)
 {
 	// TODO: define and call method(s) to initialize your model and send data to GPU
+
+	// TODO: Remove this test printing code
+	for(int i=0; i<length; i++){
+		std::cout << params[i] << " ";
+	}
+	std::cout << "\n";
 }
 
 ModelView::~ModelView()
