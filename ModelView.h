@@ -16,7 +16,7 @@
 class ModelView
 {
 public:
-	ModelView(ShaderIF* sIF, float params[], int length);
+	ModelView(ShaderIF* sIF, float params[], int length, int colorMode);
 	virtual ~ModelView();
 
 	// xyzLimits: {mcXmin, mcXmax, mcYmin, mcYmax, mcZmin, mcZmax}
@@ -31,10 +31,16 @@ public:
 
 private:
 	// TODO: VAO(s), VBO(s), and other relevant INSTANCE variables
+	GLuint vao[1];
+	GLuint vbo[1];
+	int color;
+
+	double ymin, ymax; //records the limits of this instance
 
 	ShaderIF* shaderIF;
 
 	// TODO: add uniform and attribute variable location CLASS variables
+	void defineCurve(float params[], int length);
 
 	// Routines for computing parameters necessary to map from arbitrary
 	// model coordinate ranges into OpenGL's -1..+1 Logical Device Space.

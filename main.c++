@@ -28,7 +28,7 @@ void createScene(GLFWController& c, ShaderIF* sIF, std::string fileName) {
 	}
 
 	for(int i=0; i<num; i++){
-		c.addModel(new ModelView(sIF, values[i], length));
+		c.addModel(new ModelView(sIF, values[i], length, i%5));
 	}
 }
 

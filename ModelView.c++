@@ -9,20 +9,19 @@
 double ModelView::mcRegionOfInterest[6] = { -1.0, 1.0, -1.0, 1.0, -1.0, 1.0 };
 bool ModelView::aspectRatioPreservationEnabled = true;
 
-ModelView::ModelView(ShaderIF* sIF, float params[], int length) : shaderIF(sIF)
+ModelView::ModelView(ShaderIF* sIF, float params[], int length, int color) : shaderIF(sIF), color(color)
 {
-	// TODO: define and call method(s) to initialize your model and send data to GPU
-
-	// TODO: Remove this test printing code
-	for(int i=0; i<length; i++){
-		std::cout << params[i] << " ";
-	}
-	std::cout << "\n";
+	defineCurve(params, length);
 }
 
 ModelView::~ModelView()
 {
-	// TODO: delete the vertex array objects and buffers here
+	if (vao[0] > 0) // hasn't already been deleted
+	{
+		glDeleteBuffers(1, vbo);
+		glDeleteVertexArrays(1, vao);
+		vao[0] = vbo[0] = 0;
+	}
 }
 
 void ModelView::compute2DScaleTrans(float* scaleTransF) // CLASS METHOD
@@ -124,4 +123,10 @@ void ModelView::setMCRegionOfInterest(double xyz[6])
 {
 	for (int i=0 ; i<6 ; i++)
 		mcRegionOfInterest[i] = xyz[i];
+}
+
+void ModelView::defineCurve(float params[], int length) {
+	std::cout << "Hello! " << color << "\n";
+
+	// TODO: this
 }
