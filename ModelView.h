@@ -13,6 +13,10 @@
 #include <GL/gl.h>
 #endif
 
+// for interfacing to common GLSL data types
+typedef float vec2[2];
+typedef float vec3[3];
+
 class ModelView
 {
 public:
@@ -33,6 +37,7 @@ private:
 	GLuint vao[1];
 	GLuint vbo[1];
 	int color;
+	const int NUM_POINTS_ON_CURVE = 201;
 
 	double ymin, ymax; //records the limits of this instance
 
@@ -40,6 +45,7 @@ private:
 
 	// TODO: add uniform and attribute variable location CLASS variables
 	void defineCurve(float params[], int length);
+	float generateYValue(float t, float params[], int length);
 
 	// Routines for computing parameters necessary to map from arbitrary
 	// model coordinate ranges into OpenGL's -1..+1 Logical Device Space.
