@@ -118,7 +118,7 @@ void ModelView::render() const
 
 
 	// TODO: make require primitive call(s)
-	glBindVertexArray(vao[0]);
+	// glBindVertexArray(vao[0]);
 
 	// TODO: Draw the curve?
 

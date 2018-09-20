@@ -55,6 +55,8 @@ int main(int argc, char* argv[]) {
 	// Tell class ModelView we initially want to see the whole scene:
 	ModelView::setMCRegionOfInterest(xyz);
 
+	ModelView::setAspectRatioPreservationEnabled(false);
+
 	glClearColor(1,1,1,1);
 	c.setWindowTitle(argv[1]);
 	c.run();
