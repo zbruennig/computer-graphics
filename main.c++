@@ -56,6 +56,7 @@ int main(int argc, char* argv[]) {
 	ModelView::setMCRegionOfInterest(xyz);
 
 	glClearColor(1,1,1,1);
+	c.setWindowTitle(argv[1]);
 	c.run();
 
 	delete sIF;

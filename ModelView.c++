@@ -26,9 +26,6 @@ ModelView::~ModelView()
 
 void ModelView::compute2DScaleTrans(float* scaleTransF) // CLASS METHOD
 {
-	// TODO: This code can be used as is, BUT be absolutely certain you
-	//       understand everything about how it works.
-
 	double xmin = mcRegionOfInterest[0];
 	double xmax = mcRegionOfInterest[1];
 	double ymin = mcRegionOfInterest[2];
@@ -55,9 +52,9 @@ void ModelView::compute2DScaleTrans(float* scaleTransF) // CLASS METHOD
 // xyzLimits: {mcXmin, mcXmax, mcYmin, mcYmax, mcZmin, mcZmax}
 void ModelView::getMCBoundingBox(double* xyzLimits) const
 {
-	// TODO:
-	// Put this ModelView instance's min and max x, y, and z extents
-	// into xyzLimits[0..5]. (-1 .. +1 is OK for z direction for 2D models)
+	xyzLimits[0] = -3.14159;	xyzLimits[1] = 3.14159;
+	xyzLimits[2] = ymin;				xyzLimits[3] = ymax;
+	xyzLimits[4] = -1;				xyzLimits[5] = 1;
 }
 
 bool ModelView::handleCommand(unsigned char anASCIIChar, double ldsX, double ldsY)
@@ -78,9 +75,6 @@ void ModelView::linearMap(double fromMin, double fromMax, double toMin, double t
 void ModelView::matchAspectRatio(double& xmin, double& xmax,
         double& ymin, double& ymax, double vAR)
 {
-	// TODO: This code can be used as is, BUT be absolutely certain you
-	//       understand everything about how it works.
-
 	double wHeight = ymax - ymin;
 	double wWidth = xmax - xmin;
 	double wAR = wHeight / wWidth;
@@ -111,9 +105,22 @@ void ModelView::render() const
 	// draw the triangles using our vertex and fragment shaders
 	glUseProgram(shaderIF->getShaderPgmID());
 
-	// TODO: set scaleTrans (and all other needed) uniform(s)
+	if(shaderIF->ppuExists("scaleTrans") != -1){
+		float scaleTrans[4];
+		compute2DScaleTrans(scaleTrans);
+		glUniform4fv(shaderIF->ppuLoc("scaleTrans"), 1, scaleTrans);
+	}
+
+	// Establish the color mode
+	if(shaderIF->ppuExists("colorMode") != -1){
+		glUniform1i(shaderIF->ppuLoc("colorMode"), color);
+	}
+
 
 	// TODO: make require primitive call(s)
+	glBindVertexArray(vao[0]);
+
+	// TODO: Draw the curve?
 
 	// restore the previous program
 	glUseProgram(pgm);
@@ -126,7 +133,7 @@ void ModelView::setMCRegionOfInterest(double xyz[6])
 }
 
 void ModelView::defineCurve(float params[], int length) {
-	std::cout << "Hello! " << color << "\n";
-
+	ymin = -2;
+	ymax = 2;
 	// TODO: this
 }

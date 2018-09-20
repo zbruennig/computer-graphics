@@ -30,7 +30,6 @@ public:
 	static void setMCRegionOfInterest(double xyz[6]);
 
 private:
-	// TODO: VAO(s), VBO(s), and other relevant INSTANCE variables
 	GLuint vao[1];
 	GLuint vbo[1];
 	int color;
